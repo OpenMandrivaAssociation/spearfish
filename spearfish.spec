@@ -62,14 +62,16 @@ cp -a * %{buildroot}/%{_datadir}/grass/%{name}
 mkdir -p %{buildroot}/%{_bindir}
 install -m755 %{SOURCE1} %{buildroot}/%{_bindir}
 
-mkdir -p %{buildroot}/%{_menudir}
-cat << EOF > $RPM_BUILD_ROOT/%{_menudir}/%{name}-grass
-?package(%{name}-grass):command="%{_bindir}/grass5-spearfish -tcltk" \
-icon="grass.png" \
-needs="text" \
-section="Applications/Sciences/Geosciences" \
-title="Grass (Spearfish)" \
-longtitle="Grass using the Spearfish sample data set"
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+cat << EOF > %buildroot%{_datadir}/applications/mandriva-$RPM_BUILD_ROOT.desktop
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=%{_bindir}/grass5-spearfish -tcltk
+Icon=grass.png
+Categories=Education;Science;Geology;
+Name=Grass (Spearfish)
+Comment=Grass using the Spearfish sample data set
 EOF
 
 #mapserver:
@@ -97,7 +99,7 @@ rm -Rf %{buildroot}
 %files grass
 %defattr(-,root,root)
 %{_bindir}/grass5-spearfish
-%{_menudir}/%{name}-grass
+%{_datadir}/applications/mandriva-%{name}-grass.desktop
 
 %files mapserver
 %defattr(-,root,root)
