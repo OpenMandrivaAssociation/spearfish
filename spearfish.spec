@@ -65,7 +65,6 @@ install -m755 %{SOURCE1} %{buildroot}/%{_bindir}
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
 cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}-grass.desktop
 [Desktop Entry]
-Encoding=UTF-8
 Type=Application
 Exec=%{_bindir}/grass5-spearfish -tcltk
 Icon=grass.png
