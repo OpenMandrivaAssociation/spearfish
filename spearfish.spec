@@ -1,11 +1,12 @@
 %define _mapserverdir %{_var}/www/html/mapserver
 
 Name:		spearfish
-Version:	1.0
-Release:	%mkrel 3
+Version:	0.3
+Epoch:		1
+Release:	%mkrel 1
 License:	GPL
 Url:		http://grass.itc.it/data.html
-Source:		http://grass.itc.it/sampledata/%{name}_grass50data.tar.bz2
+Source:		http://grass.itc.it/sampledata/%{name}_grass60data-%{version}.tar.gz
 Source1:	grass5-spearfish
 Source2:	http://grass.itc.it/spearfish/grass5_mapserver.tar.bz2
 Patch:		grass5_mapserver-mandrake-paths.patch
@@ -49,7 +50,7 @@ http://localhost/mapserver/spearfish
 
 %prep
 
-%setup -q -n %{name} -a 2
+%setup -q -n %{name}60 -a 2
 %patch
 
 %build
@@ -60,17 +61,18 @@ mkdir -p %{buildroot}/%{_datadir}/grass/%{name}
 cp -a * %{buildroot}/%{_datadir}/grass/%{name}
 
 mkdir -p %{buildroot}/%{_bindir}
-install -m755 %{SOURCE1} %{buildroot}/%{_bindir}
+install -m755 %{SOURCE1} %{buildroot}/%{_bindir}/grass6-spearfish
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
 cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}-grass.desktop
 [Desktop Entry]
 Type=Application
-Exec=%{_bindir}/grass5-spearfish -tcltk
+Exec=%{_bindir}/grass6-spearfish -tcltk
 Icon=grass.png
 Categories=Education;Science;Geology;
 Name=Grass (Spearfish)
 Comment=Grass using the Spearfish sample data set
+Terminal=true
 EOF
 
 #mapserver:
@@ -97,7 +99,7 @@ rm -Rf %{buildroot}
 
 %files grass
 %defattr(-,root,root)
-%{_bindir}/grass5-spearfish
+%{_bindir}/grass6-spearfish
 %{_datadir}/applications/mandriva-%{name}-grass.desktop
 
 %files mapserver
