@@ -68,7 +68,7 @@ cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}-grass.desktop
 [Desktop Entry]
 Type=Application
 Exec=%{_bindir}/grass6-spearfish -tcltk
-Icon=grass.png
+Icon=grass
 Categories=Education;Science;Geology;
 Name=Grass (Spearfish)
 Comment=Grass using the Spearfish sample data set
