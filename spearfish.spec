@@ -12,6 +12,7 @@ Source2:	http://grass.itc.it/spearfish/grass5_mapserver.tar.bz2
 Patch:		grass5_mapserver-mandrake-paths.patch
 Summary:	The Spearfish sample GIS data set
 Group:		Sciences/Geosciences
+Buildroot:	%{_tmppath}/%{name}-%{version}
 Buildarch:	noarch
 
 %description
