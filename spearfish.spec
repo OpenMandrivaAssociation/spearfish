@@ -87,11 +87,15 @@ popd
 %clean
 rm -Rf %{buildroot}
 
+%if %mdkversion < 200900
 %post grass
 %update_menus
+%endif
 
+%if %mdkversion < 200900
 %postun grass
 %clean_menus
+%endif
 
 %files
 %defattr(-,root,root)
