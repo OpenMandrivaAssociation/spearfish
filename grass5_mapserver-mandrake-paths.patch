@@ -1,0 +1,107 @@
+diff -ur grass5_mapserver-orig/map-script/mapserver.map grass5_mapserver/map-script/mapserver.map
+--- grass5_mapserver-orig/map-script/mapserver.map	2002-02-06 17:00:16.000000000 +0200
++++ grass5_mapserver/map-script/mapserver.map	2003-08-17 13:35:11.000000000 +0200
+@@ -17,7 +17,7 @@
+ NAME GRASS
+ STATUS ON
+ SIZE 500 400
+-SYMBOLSET /var/www/map-script/marker.sym
++SYMBOLSET /var/www/html/mapserver/spearfish/map-script/marker.sym
+ 
+ #Spearfish
+ #         W       S      E      N
+@@ -27,11 +27,11 @@
+ # Start of web interface definition
+ WEB
+ # reference HTML file:
+-  TEMPLATE /var/www/html/spearfish.html
++  TEMPLATE /var/www/html/mapserver/spearfish/spearfish.html
+ #temp data absolute path:
+-  IMAGEPATH /tmp/mapserver/
++  IMAGEPATH /var/www/html/mapserver/tmp/
+ #temp data relative path:
+-  IMAGEURL "/tmp/"
++  IMAGEURL "/mapserver/tmp/"
+ # max/min zoom:
+   MINSCALE 1500
+   MAXSCALE 155000
+@@ -75,10 +75,10 @@
+   NAME dem
+   TYPE RASTER
+   STATUS ON
+-  OFFSITE 0
+-#switch off map at certain min scale (1:1000):
++#  OFFSITE 0 0 0
++##switch off map at certain min scale (1:1000):
+   MINSCALE 1000
+-  DATA /var/www/html/spearfish/elevation.tif
++  DATA /var/www/html/mapserver/spearfish/elevation.tif
+ END
+ 
+ 
+@@ -87,7 +87,7 @@
+   NAME soils
+   TYPE RASTER
+   STATUS ON
+-  DATA "/var/www/grassdata/spearfish/PERMANENT/cellhd/soils"
++  DATA "/usr/share/grass/spearfish/PERMANENT/cellhd/soils"
+ END # Layer
+ 
+ #vector layer in SHAPE:
+@@ -96,11 +96,11 @@
+   NAME roads
+   TYPE LINE
+   STATUS DEFAULT
+-  DATA /var/www/html/spearfish/roads
++  DATA /var/www/html/mapserver/spearfish/roads
+   TOLERANCE 5
+   LABELITEM CAT_ID
+-  TEMPLATE /var/www/html/spearfish/roads.html
+-  OFFSITE 0
++  TEMPLATE /var/www/html/mapserver/spearfish/roads.html
++  OFFSITE 0 0 0
+   CLASS
+     NAME "Road"
+     COLOR 80 80 80
+@@ -117,10 +117,10 @@
+   NAME fields
+   TYPE POLYGON
+   STATUS ON
+-  DATA /var/www/html/spearfish/fields
++  DATA /var/www/html/mapserver/spearfish/fields
+   TOLERANCE 5
+   LABELITEM CAT_ID
+-  TEMPLATE /var/www/html/spearfish/fields.html
++  TEMPLATE /var/www/html/mapserver/spearfish/fields.html
+   CLASS
+     SYMBOL "pattern1"
+     NAME "Fields"
+@@ -136,7 +136,7 @@
+ 
+ REFERENCE
+   STATUS ON
+-  IMAGE "/var/www/html/spearfish/refmap.png"
++  IMAGE "/var/www/html/mapserver/spearfish/refmap.png"
+   SIZE 187 150
+   EXTENT 590000 4914000 609000 4928000
+   COLOR 200 200 200
+diff -ur grass5_mapserver-orig/spearfish/.grassrc5 grass5_mapserver/spearfish/.grassrc5
+--- grass5_mapserver-orig/spearfish/.grassrc5	2002-02-06 17:00:30.000000000 +0200
++++ grass5_mapserver/spearfish/.grassrc5	2003-08-17 13:37:00.000000000 +0200
+@@ -1,3 +1,3 @@
+-GISDBASE: /grass0/neteler/grassdata
++GISDBASE: /var/www/html/mapserver/spearfish/
+ LOCATION_NAME: spearfish
+ MAPSET: PERMANENT
+diff -ur grass5_mapserver-orig/start.html grass5_mapserver/start.html
+--- grass5_mapserver-orig/start.html	2002-02-06 17:00:36.000000000 +0200
++++ grass5_mapserver/start.html	2003-08-17 13:34:58.000000000 +0200
+@@ -1,7 +1,7 @@
+ <HTML>
+ <title>MapServer Startup</title>
+ <body>
+-<a href=http://grass.itc.it/cgi-bin/mapserv?map=/var/www/map-script/mapserver.map>
++	<a href=/cgi-bin/mapserv?map=/var/www/html/mapserver/spearfish/map-script/mapserver.map>
+    Start SPEARFISH mapserver</a>
+ <p>
+ This simple implementation uses MapServer and <a href=related_projects.html>libgrass</a> to read
