@@ -5,7 +5,7 @@ Version:	0.3
 Epoch:		1
 Release:	%mkrel 4
 License:	GPL
-Url:		http://grass.itc.it/data.html
+Url:		https://grass.itc.it/data.html
 Source:		http://grass.itc.it/sampledata/%{name}_grass60data-%{version}.tar.gz
 Source1:	grass5-spearfish
 Source2:	http://grass.itc.it/spearfish/grass5_mapserver.tar.bz2
@@ -40,7 +40,7 @@ Summary:	Mapserver support for the Spearfish sample GIS data set
 Requires:	mapserver %{name}
 License:	GPL
 Group:		Sciences/Geosciences
-Url:		http://grass.itc.it/start.html
+Url:		https://grass.itc.it/start.html
 
 %description mapserver
 This package contains the files to support the use of the Spearfish data set
