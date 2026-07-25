@@ -3,7 +3,7 @@
 Name:		spearfish
 Version:	0.3
 Epoch:		1
-Release:	%mkrel 4
+Release:	5
 License:	GPL
 Url:		https://grass.itc.it/data.html
 Source:		http://grass.itc.it/sampledata/%{name}_grass60data-%{version}.tar.gz
